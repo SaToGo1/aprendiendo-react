@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/SaToGo1/aprendiendo-react/issues"
   },
-  "homepage": "https://github.com/SaToGo1/aprendiendo-react#readme"
+  "homepage": "https://github.com/SaToGo1/aprendiendo-react#readme",
+  "dependencies": {
+    "canvas-confetti": "1.6.0"
+  }
 }
