@@ -30,10 +30,16 @@ function App() {
   const [turn, setTurn] = useState(TURNS.X);
 
   const updateBoard = (index) => {
+    // no actualizamos esta posición
+    // si ya tiene algo
+    if (board[index]) return;
+
+    // Actualizar el tablero
     const newBoard = [...board];
     newBoard[index] = turn;
     setBoard(newBoard);
 
+    // Cambiar el turno
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X;
     setTurn(newTurn);
   }
