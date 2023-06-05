@@ -8,26 +8,40 @@ const CAT_PREFIX_IMAGE_URL = 'https://cataas.com'
 export const App = () => {
   const [fact, setFact] = useState('')
   const [imageUrl, setImageUrl] = useState('')
+  const [factError, setFactError] = useState()
 
+  // para recuperar la cita al cargar la página
   useEffect(() => {
     fetch(CAT_ENDPOINT_RANDOM_FACT)
-      .then(res => res.json())
-      .then(data => {
-        const { fact } = data
-        setFact(fact)
-
-        const threeFirstWords = fact.split(' ', 3).join(' ')
-        console.log(threeFirstWords)
-
-        fetch(`https://cataas.com/cat/says/${threeFirstWords}?size=50&color=red&json=true`)
-          .then(res => res.json())
-          .then(response => {
-            console.log(response)
-            const { url } = response
-            setImageUrl(url)
-          })
+      .then(res => {
+        // if (!res.ok) {
+        //   setFactError('No se ha podido recuperar la cita')
+        // }
+        if (!res.ok) throw new Error('Error fetching fact')
+        return res.json()
       })
+      .then(data => setFact(data.fact))
+      // .catch((err) => {
+      //   // tanto si hay un error con la respuesta
+      //   // como si hay un error con la petición
+      // })
   }, [])
+
+  // para recuperar la imagen cada vez que tenemos una cita nueva
+  useEffect(() => {
+    if (!fact) return
+
+    const threeFirstWords = fact.split(' ', 3).join(' ')
+    console.log(threeFirstWords)
+
+    fetch(`https://cataas.com/cat/says/${threeFirstWords}?size=50&color=red&json=true`)
+      .then(res => res.json())
+      .then(response => {
+        console.log(response)
+        const { url } = response
+        setImageUrl(url)
+      })
+  }, [fact])
 
   return (
     <main>
