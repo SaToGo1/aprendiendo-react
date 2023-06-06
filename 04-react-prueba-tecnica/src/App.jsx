@@ -5,14 +5,8 @@ import { getRandomFact } from './services/facts'
 
 const CAT_PREFIX_IMAGE_URL = 'https://cataas.com'
 
-export const App = () => {
-  const [fact, setFact] = useState('')
+function useCatImage ({ fact }) {
   const [imageUrl, setImageUrl] = useState('')
-
-  // para recuperar la cita al cargar la página
-  useEffect(() => {
-    getRandomFact().then(fact => setFact(fact))
-  }, [])
 
   // para recuperar la imagen cada vez que tenemos una cita nueva
   useEffect(() => {
@@ -29,6 +23,18 @@ export const App = () => {
         setImageUrl(url)
       })
   }, [fact])
+
+  return { imageUrl }
+} // { imageUrl: 'https://...' }
+
+export const App = () => {
+  const [fact, setFact] = useState('')
+  const { imageUrl } = useCatImage({ fact })
+
+  // para recuperar la cita al cargar la página
+  useEffect(() => {
+    getRandomFact().then(fact => setFact(fact))
+  }, [])
 
   const handleClick = async () => {
     const newFact = await getRandomFact()
