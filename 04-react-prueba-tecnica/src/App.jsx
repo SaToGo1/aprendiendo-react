@@ -3,7 +3,6 @@ import './styles/App.css'
 
 import { getRandomFact } from './services/facts'
 
-// const CAT_ENDPOINT_IMAGE_URL = `https://cataas.com/cat/says/${firstWord}?size=50&color=red&json=true`
 const CAT_PREFIX_IMAGE_URL = 'https://cataas.com'
 
 export const App = () => {
@@ -12,13 +11,9 @@ export const App = () => {
 
   // para recuperar la cita al cargar la página
   useEffect(() => {
-    getRandomFact().then(data => setFact(data))
+    getRandomFact().then(fact => setFact(fact))
   }, [])
 
-  const handleClick = async () => {
-    const newFact = await getRandomFact()
-    setFact(newFact)
-  }
   // para recuperar la imagen cada vez que tenemos una cita nueva
   useEffect(() => {
     if (!fact) return
@@ -34,6 +29,11 @@ export const App = () => {
         setImageUrl(url)
       })
   }, [fact])
+
+  const handleClick = async () => {
+    const newFact = await getRandomFact()
+    setFact(newFact)
+  }
 
   return (
     <main>
