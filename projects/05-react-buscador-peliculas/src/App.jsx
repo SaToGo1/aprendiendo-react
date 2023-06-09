@@ -2,7 +2,17 @@ import './App.css'
 
 function App() {
   return (
-    <h1>Prueba Técnica</h1>
+    <div>
+      <header>
+        <form>
+          <input placeholder='Avengers, Star Wars' />
+          <button type='submit'>Buscar</button>
+        </form>
+      </header>
+      <main>
+        Aquí irán los resultados
+      </main>
+    </div>
   )
 }
 
