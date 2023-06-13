@@ -26,7 +26,7 @@ form {
 
     display: grid;
     width: 100%;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 32px;
 }
 
@@ -34,6 +34,11 @@ form {
     text-align: center;
 }
 
+.movie h3, .movie p {
+    margin: 0;
+}
+
 .movie img{
     border-radius: 8px;
+    margin-top: 16px;
 }
