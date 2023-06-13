@@ -36,12 +36,12 @@ function useSearch () {
 }
 
 function App() {
-  const { movies } = useMovies()
   const { search, updateSearch, error } = useSearch()
+  const { movies, loading, getMovies } = useMovies({ search })
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log({ query })
+    getMovies()
   }
 
   const handleChange = (event) => {
@@ -68,7 +68,9 @@ function App() {
         {error && <p style={{ color: 'red' }}>{error}</p>}
       </header>
       <main>
-        <Movies movies={movies}/>
+        {
+          loading ? <p>cargando ...</p> : <Movies movies={movies}/>
+        }
       </main>
     </div>
   )
