@@ -1,4 +1,4 @@
-import API_KEY from './API_KEY'
+import { API_KEY } from './API_KEY'
 
 export const searchMovies = async ({ search }) => {
   if (search === '') return null
