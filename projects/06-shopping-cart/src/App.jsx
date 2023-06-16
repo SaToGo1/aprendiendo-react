@@ -1,13 +1,10 @@
-import { useState } from 'react'
-
-import './App.css'
+import { products } from './mock/products.json'
+import { Products } from './components/Products.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <h1>Shopping Cart</h1>
+      <Products products={products} />
     </>
   )
 }
