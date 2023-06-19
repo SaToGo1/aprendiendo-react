@@ -1,13 +1,13 @@
-import { useCart } from '../hooks/useCart'
+// import { useCart } from '../hooks/useCart'
 import './Footer.css'
 
 export function Footer () {
-  const { cart } = useCart()
+  // const { cart } = useCart()
 
   return (
     <footer className='footer'>
       {
-        JSON.stringify(cart, null, 2)
+        // JSON.stringify(cart, null, 2)
       }
       {/* <h4>prueba técnica de React -
         <span>@midudev</span>
